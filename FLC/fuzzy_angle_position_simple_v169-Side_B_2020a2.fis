@@ -1,0 +1,61 @@
+[System]
+Name='fuzzy_angle_position_simple_v169-Side_B_2020a2'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=8
+AndMethod='prod'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Angle'
+Range=[-0.2 0.2]
+NumMFs=2
+MF1='N':'zmf',[-0.02 0.02]
+MF2='P':'smf',[-0.02 0.02]
+
+[Input2]
+Name='Ang_Speed'
+Range=[-1 1]
+NumMFs=2
+MF1='N':'zmf',[-0.5 0.5]
+MF2='P':'smf',[-0.5 0.5]
+
+[Input3]
+Name='Car_Position'
+Range=[-0.2 0.2]
+NumMFs=2
+MF1='N':'zmf',[-0.15 0.15]
+MF2='P':'smf',[-0.15 0.15]
+
+[Input4]
+Name='Car_Speed'
+Range=[-0.3 0.3]
+NumMFs=2
+MF1='N':'zmf',[-0.2 0.2]
+MF2='P':'smf',[-0.2 0.2]
+
+[Output1]
+Name='u'
+Range=[-10 10]
+NumMFs=6
+MF1='N':'zmf',[-8 -6]
+MF2='NM':'gauss2mf',[1 -5 1 -4.5]
+MF3='NS':'gauss2mf',[0.3 -1.61746031746032 0.3 -0.517460317460316]
+MF4='PS':'gauss2mf',[0.3 0.400529100529101 0.3 1.7575291005291]
+MF5='PM':'gauss2mf',[1 4.5 1 5]
+MF6='P':'smf',[6 8]
+
+[Rules]
+1 0 0 0, 1 (0.6) : 1
+0 1 0 0, 1 (0.6) : 1
+2 0 0 0, 6 (1) : 1
+0 2 0 0, 6 (1) : 1
+0 0 1 0, 3 (1) : 1
+0 0 2 0, 4 (1) : 1
+0 0 0 1, 2 (0.75) : 1
+0 0 0 2, 5 (0.65) : 1
